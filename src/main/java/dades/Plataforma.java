@@ -8,6 +8,11 @@ package dades;
  *
  * @author Usuario
  */
-public class Plataforma {
+public enum Plataforma {
+    
+    PS5,
+    SWITCH_2,
+    XBOX,
+    PC
     
 }
