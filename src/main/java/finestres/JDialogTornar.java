@@ -29,21 +29,163 @@ public class JDialogTornar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblLloguers = new javax.swing.JTable();
+        pnlDetallsLloguer = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblJoc = new javax.swing.JLabel();
+        lblUsuari = new javax.swing.JLabel();
+        lblPlataforma = new javax.swing.JLabel();
+        lblDataInici = new javax.swing.JLabel();
+        btnMarcarRetornat = new javax.swing.JButton();
+        btnTancar = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 387, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 439, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tornar lloguer");
+
+        tblLloguers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Núm. registre", "Títol del joc", "Usuari", "Plataforma", "Data d'inici"
+            }
+        ));
+        tblLloguers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblLloguers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tblLloguers);
+
+        pnlDetallsLloguer.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabel1.setText("Joc:");
+
+        jLabel2.setText("Usuari:");
+
+        jLabel3.setText("Data d'inici:");
+
+        jLabel4.setText("Plataforma:");
+
+        lblJoc.setText("Nombre del videojuego");
+
+        lblUsuari.setText("Nombre del usuario");
+
+        lblPlataforma.setText("Plataforma seleccionada");
+
+        lblDataInici.setText("Fecha de inicio");
+
+        btnMarcarRetornat.setText("Marcar com a retornat");
+
+        btnTancar.setText("Tancar");
+        btnTancar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTancarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlDetallsLloguerLayout = new javax.swing.GroupLayout(pnlDetallsLloguer);
+        pnlDetallsLloguer.setLayout(pnlDetallsLloguerLayout);
+        pnlDetallsLloguerLayout.setHorizontalGroup(
+            pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(lblJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(btnMarcarRetornat, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                        .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                                .addComponent(lblDataInici, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(191, 191, 191)
+                        .addComponent(btnTancar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(370, 370, 370))))
+        );
+        pnlDetallsLloguerLayout.setVerticalGroup(
+            pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDetallsLloguerLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblJoc)
+                    .addComponent(btnMarcarRetornat))
+                .addGap(15, 15, 15)
+                .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblUsuari))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblPlataforma))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlDetallsLloguerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblDataInici)
+                    .addComponent(btnTancar))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlDetallsLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 25, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(pnlDetallsLloguer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTancarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTancarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +225,19 @@ public class JDialogTornar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMarcarRetornat;
+    private javax.swing.JButton btnTancar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDataInici;
+    private javax.swing.JLabel lblJoc;
+    private javax.swing.JLabel lblPlataforma;
+    private javax.swing.JLabel lblUsuari;
+    private javax.swing.JPanel pnlDetallsLloguer;
+    private javax.swing.JTable tblLloguers;
     // End of variables declaration//GEN-END:variables
 }
