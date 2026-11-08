@@ -51,6 +51,7 @@ public class JDialogJoc extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Crear Joc");
 
         jLabel1.setText("Nom *:");
 
