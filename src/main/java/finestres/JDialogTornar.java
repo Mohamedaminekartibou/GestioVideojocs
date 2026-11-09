@@ -22,6 +22,18 @@ public class JDialogTornar extends javax.swing.JDialog {
     public JDialogTornar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        setLocationRelativeTo(parent);
+
+        carregarLloguers();
+
+        tblLloguers.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                mostrarDetalls();
+            }
+        });
+
+        btnMarcarRetornat.addActionListener(e -> marcarRetornat());
     }
 
     /**
@@ -96,6 +108,11 @@ public class JDialogTornar extends javax.swing.JDialog {
         lblDataInici.setText("Fecha de inicio");
 
         btnMarcarRetornat.setText("Marcar com a retornat");
+        btnMarcarRetornat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarcarRetornatActionPerformed(evt);
+            }
+        });
 
         btnTancar.setText("Tancar");
         btnTancar.addActionListener(new java.awt.event.ActionListener() {
@@ -188,8 +205,12 @@ public class JDialogTornar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTancarActionPerformed
-        // TODO add your handling code here:
+dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnTancarActionPerformed
+
+    private void btnMarcarRetornatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcarRetornatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMarcarRetornatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,4 +265,95 @@ public class JDialogTornar extends javax.swing.JDialog {
     private javax.swing.JPanel pnlDetallsLloguer;
     private javax.swing.JTable tblLloguers;
     // End of variables declaration//GEN-END:variables
+
+private void carregarLloguers() {
+
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) tblLloguers.getModel();
+
+    model.setRowCount(0);
+    lloguersActius.clear();
+
+    for (dades.Lloguer l : dades.GestioDades.lloguers) {
+
+        if (!l.isRetornat()) {
+
+            lloguersActius.add(l);
+
+            model.addRow(new Object[]{
+                l.getNumRegistre(),
+                l.getJoc().getNom(),
+                l.getUsuari().getNomComplet(),
+                l.getPlataforma(),
+                l.getDataInici()
+            });
+        }
+    }
+
+    lloguerSeleccionat = null;
+    btnMarcarRetornat.setEnabled(false);
+}
+
+private void mostrarDetalls() {
+
+    int fila = tblLloguers.getSelectedRow();
+
+    if (fila < 0) {
+        return;
+    }
+
+    lloguerSeleccionat = lloguersActius.get(fila);
+
+    lblJoc.setText(lloguerSeleccionat.getJoc().getNom());
+    lblUsuari.setText(lloguerSeleccionat.getUsuari().getNomComplet());
+    lblPlataforma.setText(lloguerSeleccionat.getPlataforma().toString());
+    lblDataInici.setText(lloguerSeleccionat.getDataInici());
+
+    btnMarcarRetornat.setEnabled(true);
+}
+
+private void marcarRetornat() {
+
+    if (lloguerSeleccionat == null) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Selecciona un lloguer."
+        );
+        return;
+    }
+
+    if (lloguerSeleccionat.isRetornat()) {
+        return;
+    }
+
+    dades.Joc joc = lloguerSeleccionat.getJoc();
+
+    switch (lloguerSeleccionat.getPlataforma()) {
+
+        case PS5:
+            joc.setUnitatsPS5(joc.getUnitatsPS5() + 1);
+            break;
+
+        case XBOX:
+            joc.setUnitatsXbox(joc.getUnitatsXbox() + 1);
+            break;
+
+        case SWITCH_2:
+            joc.setUnitatsSwitch2(joc.getUnitatsSwitch2() + 1);
+            break;
+
+        case PC:
+            joc.setUnitatsPC(joc.getUnitatsPC() + 1);
+            break;
+    }
+
+    lloguerSeleccionat.setRetornat(true);
+
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Lloguer retornat correctament."
+    );
+
+    carregarLloguers();
+}
+
 }
