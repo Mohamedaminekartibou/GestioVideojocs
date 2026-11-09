@@ -9,36 +9,34 @@ package dades;
  * @author Usuario
  */
 
+
 public class Usuari {
 
     private String nom;
-    private String cognom1;
-    private String cognom2;
+    private String llinatge1;
+    private String llinatge2;
     private String dni;
     private String telefon;
+    private String dataRegistre;
 
-    public Usuari(String nom, String cognom1,
-            String cognom2, String dni, String telefon) {
+    public Usuari(String nom, String llinatge1, String llinatge2,
+            String dni, String telefon, String dataRegistre) {
 
         this.nom = nom;
-        this.cognom1 = cognom1;
-        this.cognom2 = cognom2;
+        this.llinatge1 = llinatge1;
+        this.llinatge2 = llinatge2;
         this.dni = dni;
         this.telefon = telefon;
+        this.dataRegistre = dataRegistre;
+    }
+
+    public String getNomComplet() {
+        return nom + " " + llinatge1 + " " + llinatge2;
     }
 
     public String getNom() {
         return nom;
     }
-
-    public String getCognom1() {
-        return cognom1;
-    }
-
-    public String getCognom2() {
-        return cognom2;
-    }
-
     public String getDni() {
         return dni;
     }
@@ -47,8 +45,7 @@ public class Usuari {
         return telefon;
     }
 
-    @Override
-    public String toString() {
-        return nom + " " + cognom1 + " " + cognom2;
+    public String getDataRegistre() {
+        return dataRegistre;
     }
 }

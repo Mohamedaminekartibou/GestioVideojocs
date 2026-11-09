@@ -190,9 +190,21 @@ public class JDialogUsuari extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+
         if (!campsCorrectes()) {
             return;
         }
+
+        dades.Usuari usuari = new dades.Usuari(
+                txtNom.getText().trim(),
+                txtLlinatge1.getText().trim(),
+                txtLlinatge2.getText().trim(),
+                txtDni.getText().trim(),
+                txtTelefon.getText().trim(),
+                txtDataRegistre.getText()
+        );
+
+        dades.GestioDades.usuaris.add(usuari);
 
         javax.swing.JOptionPane.showMessageDialog(
                 this,
@@ -201,7 +213,9 @@ public class JDialogUsuari extends javax.swing.JDialog {
                 javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
 
-        dispose();  // TODO add your handling code here:
+        dispose();
+
+// TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
