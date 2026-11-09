@@ -9,14 +9,19 @@ package validacio;
  * @author Usuario
  */
 
+
 public class ValidacioNoms {
 
     public static boolean comencaAmbMajuscula(String text) {
 
-        if (text == null || text.isEmpty()) {
+        if (text == null || text.trim().isEmpty()) {
             return false;
         }
 
-        return Character.isUpperCase(text.charAt(0));
+        return Character.isUpperCase(text.trim().charAt(0));
+    }
+
+    public static boolean esBuit(String text) {
+        return text == null || text.trim().isEmpty();
     }
 }

@@ -16,9 +16,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
      * Creates new form JFramePrincipal
      */
     public JFramePrincipal() {
-        initComponents();
-        setLocationRelativeTo(null);
-    }
+    initComponents();
+    setLocationRelativeTo(null);
+    carregarLloguers();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +119,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuUsuari.add(itemCrearUsuari);
 
         itemEsborrarUsuari.setText("Esborrar");
+        itemEsborrarUsuari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEsborrarUsuariActionPerformed(evt);
+            }
+        });
         menuUsuari.add(itemEsborrarUsuari);
 
         jMenuBar1.add(menuUsuari);
@@ -133,6 +139,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuJoc.add(itemCrearJoc);
 
         itemEsborrarJoc.setText("Esborrar");
+        itemEsborrarJoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEsborrarJocActionPerformed(evt);
+            }
+        });
         menuJoc.add(itemEsborrarJoc);
 
         jMenuBar1.add(menuJoc);
@@ -153,7 +164,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(lblTotalLloguers)
                 .addContainerGap())
         );
@@ -167,28 +178,129 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void itemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearUsuariActionPerformed
         finestres.JDialogUsuari finestra = new finestres.JDialogUsuari(this, true);
-        finestra.setVisible(true);  
+        finestra.setVisible(true);
+         carregarLloguers();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_itemCrearUsuariActionPerformed
 
     private void itemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearJocActionPerformed
         finestres.JDialogJoc finestra = new finestres.JDialogJoc(this, true);
-        finestra.setVisible(true);     
+        finestra.setVisible(true);  
+         carregarLloguers();
         // TODO add your handling code here:
     }//GEN-LAST:event_itemCrearJocActionPerformed
 
     private void itemRegistrarLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarLloguerActionPerformed
        finestres.JDialogLloguer finestra = new finestres.JDialogLloguer(this, true);
        finestra.setVisible(true); 
+               carregarLloguers();
+
 // TODO add your handling code here:
     }//GEN-LAST:event_itemRegistrarLloguerActionPerformed
 
     private void itemTornarLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTornarLloguerActionPerformed
         finestres.JDialogTornar finestra = new finestres.JDialogTornar(this, true);
 
-        finestra.setVisible(true); // TODO add your handling code here:
+        finestra.setVisible(true);
+         carregarLloguers();// TODO add your handling code here:
     }//GEN-LAST:event_itemTornarLloguerActionPerformed
+
+    private void itemEsborrarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEsborrarUsuariActionPerformed
+        if (dades.GestioDades.usuaris.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hi ha usuaris.");
+            return;
+        }
+
+        String[] opcions = new String[dades.GestioDades.usuaris.size()];
+
+        for (int i = 0; i < opcions.length; i++) {
+            opcions[i] = dades.GestioDades.usuaris.get(i).getNomComplet();
+        }
+
+        int seleccio = javax.swing.JOptionPane.showOptionDialog(
+                this,
+                "Selecciona l'usuari que vols esborrar:",
+                "Esborrar usuari",
+                javax.swing.JOptionPane.DEFAULT_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcions,
+                opcions[0]
+        );
+
+        if (seleccio < 0) {
+            return;
+        }
+
+        dades.Usuari usuari = dades.GestioDades.usuaris.get(seleccio);
+
+        for (dades.Lloguer l : dades.GestioDades.lloguers) {
+            if (l.getUsuari() == usuari && !l.isRetornat()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "No es pot esborrar l'usuari perquè té lloguers actius.",
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+        }
+
+        dades.GestioDades.usuaris.remove(usuari);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Usuari esborrat correctament."
+        );        // TODO add your handling code here:
+    }//GEN-LAST:event_itemEsborrarUsuariActionPerformed
+
+    private void itemEsborrarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEsborrarJocActionPerformed
+        if (dades.GestioDades.jocs.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hi ha jocs.");
+            return;
+        }
+
+        String[] opcions = new String[dades.GestioDades.jocs.size()];
+
+        for (int i = 0; i < opcions.length; i++) {
+            opcions[i] = dades.GestioDades.jocs.get(i).getNom();
+        }
+
+        int seleccio = javax.swing.JOptionPane.showOptionDialog(
+                this,
+                "Selecciona el joc que vols esborrar:",
+                "Esborrar joc",
+                javax.swing.JOptionPane.DEFAULT_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcions,
+                opcions[0]
+        );
+
+        if (seleccio < 0) {
+            return;
+        }
+
+        dades.Joc joc = dades.GestioDades.jocs.get(seleccio);
+
+        for (dades.Lloguer l : dades.GestioDades.lloguers) {
+            if (l.getJoc() == joc && !l.isRetornat()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "No es pot esborrar el joc perquè té lloguers actius.",
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+        }
+
+        dades.GestioDades.jocs.remove(joc);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this, "Joc esborrat correctament."
+        );        // TODO add your handling code here:
+    }//GEN-LAST:event_itemEsborrarJocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,4 +347,79 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsuari;
     private javax.swing.JTable tblLloguers;
     // End of variables declaration//GEN-END:variables
+
+
+    private void carregarLloguers() {
+
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblLloguers.getModel();
+
+        model.setRowCount(0);
+
+        java.time.LocalDate avui = java.time.LocalDate.now();
+
+        java.time.format.DateTimeFormatter format
+                = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        for (dades.Lloguer l : dades.GestioDades.lloguers) {
+
+            String estat;
+
+            if (l.isRetornat()) {
+                estat = "Retornat";
+            } else {
+                java.time.LocalDate dataPrevista
+                        = java.time.LocalDate.parse(l.getDataPrevista(), format);
+
+                if (dataPrevista.isBefore(avui)) {
+                    estat = "Atrasat";
+                } else {
+                    estat = "Pendent";
+                }
+            }
+
+            model.addRow(new Object[]{
+                l.getNumRegistre(),
+                l.getUsuari().getNomComplet(),
+                l.getJoc().getNom(),
+                l.getPlataforma(),
+                l.getDataInici(),
+                l.getDataPrevista(),
+                estat
+            });
+        }
+
+        lblTotalLloguers.setText(
+                "Total de lloguers: " + dades.GestioDades.lloguers.size()
+        );
+
+        tblLloguers.setDefaultRenderer(Object.class,
+                new javax.swing.table.DefaultTableCellRenderer() {
+
+            @Override
+            public java.awt.Component getTableCellRendererComponent(
+                    javax.swing.JTable table, Object value,
+                    boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+
+                java.awt.Component component
+                        = super.getTableCellRendererComponent(
+                                table, value, isSelected, hasFocus, row, column);
+
+                String estat = table.getValueAt(row, 6).toString();
+
+                if (!isSelected) {
+                    if (estat.equals("Retornat")) {
+                        component.setBackground(java.awt.Color.GREEN);
+                    } else if (estat.equals("Atrasat")) {
+                        component.setBackground(java.awt.Color.RED);
+                    } else {
+                        component.setBackground(java.awt.Color.WHITE);
+                    }
+                }
+
+                return component;
+            }
+        });
+    }
 }

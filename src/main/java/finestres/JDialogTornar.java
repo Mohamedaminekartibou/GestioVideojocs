@@ -33,7 +33,6 @@ public class JDialogTornar extends javax.swing.JDialog {
             }
         });
 
-        btnMarcarRetornat.addActionListener(e -> marcarRetornat());
     }
 
     /**
@@ -209,7 +208,7 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnTancarActionPerformed
 
     private void btnMarcarRetornatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcarRetornatActionPerformed
-        // TODO add your handling code here:
+       marcarRetornat();   // TODO add your handling code here:
     }//GEN-LAST:event_btnMarcarRetornatActionPerformed
 
     /**
