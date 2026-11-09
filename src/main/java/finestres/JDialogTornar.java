@@ -10,6 +10,10 @@ package finestres;
  */
 public class JDialogTornar extends javax.swing.JDialog {
     
+    private java.util.ArrayList<dades.Lloguer> lloguersActius = new java.util.ArrayList<>();
+
+    private dades.Lloguer lloguerSeleccionat;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialogTornar.class.getName());
 
     /**

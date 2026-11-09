@@ -476,7 +476,7 @@ public class JDialogLloguer extends javax.swing.JDialog {
     }//GEN-LAST:event_txtDataTornadaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+    dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSeleccionarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarUsuariActionPerformed
@@ -586,6 +586,12 @@ public class JDialogLloguer extends javax.swing.JDialog {
 
             case PS5:
                 if (jocSeleccionat.getUnitatsPS5() <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "No hi ha unitats disponibles.",
+                            "Sense estoc",
+                            javax.swing.JOptionPane.WARNING_MESSAGE
+                    );
+                    actualitzarPlataformes();
                     return;
                 }
                 jocSeleccionat.setUnitatsPS5(
@@ -594,6 +600,12 @@ public class JDialogLloguer extends javax.swing.JDialog {
 
             case XBOX:
                 if (jocSeleccionat.getUnitatsXbox() <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "No hi ha unitats disponibles.",
+                            "Sense estoc",
+                            javax.swing.JOptionPane.WARNING_MESSAGE
+                    );
+                    actualitzarPlataformes();
                     return;
                 }
                 jocSeleccionat.setUnitatsXbox(
@@ -602,6 +614,12 @@ public class JDialogLloguer extends javax.swing.JDialog {
 
             case SWITCH_2:
                 if (jocSeleccionat.getUnitatsSwitch2() <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "No hi ha unitats disponibles.",
+                            "Sense estoc",
+                            javax.swing.JOptionPane.WARNING_MESSAGE
+                    );
+                    actualitzarPlataformes();
                     return;
                 }
                 jocSeleccionat.setUnitatsSwitch2(
@@ -610,6 +628,12 @@ public class JDialogLloguer extends javax.swing.JDialog {
 
             case PC:
                 if (jocSeleccionat.getUnitatsPC() <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "No hi ha unitats disponibles.",
+                            "Sense estoc",
+                            javax.swing.JOptionPane.WARNING_MESSAGE
+                    );
+                    actualitzarPlataformes();
                     return;
                 }
                 jocSeleccionat.setUnitatsPC(
@@ -617,6 +641,7 @@ public class JDialogLloguer extends javax.swing.JDialog {
                 break;
         }
 
+// Crear el lloguer
         dades.Lloguer lloguer = new dades.Lloguer(
                 dades.GestioDades.seguentRegistre,
                 usuariSeleccionat,
@@ -626,9 +651,11 @@ public class JDialogLloguer extends javax.swing.JDialog {
                 txtDataTornada.getText()
         );
 
+// Guardar el lloguer
         dades.GestioDades.lloguers.add(lloguer);
         dades.GestioDades.seguentRegistre++;
 
+// Missatge de confirmació
         javax.swing.JOptionPane.showMessageDialog(
                 this,
                 "Lloguer registrat correctament.",
@@ -637,7 +664,6 @@ public class JDialogLloguer extends javax.swing.JDialog {
         );
 
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
