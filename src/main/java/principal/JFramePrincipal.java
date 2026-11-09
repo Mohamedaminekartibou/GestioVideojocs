@@ -64,13 +64,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         tblLloguers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Núm. registre", "Usuari", "Joc", "Plataforma", "Data d'inici", "Data prevista", "Estat"
+                "Núm. registre", "Usuari", "Joc", "Plataforma", "Data d'inici", "Data prevista", "Estat", "Gènere"
             }
         ));
         jScrollPane1.setViewportView(tblLloguers);
@@ -154,11 +154,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTotalLloguers, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +387,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 l.getPlataforma(),
                 l.getDataInici(),
                 l.getDataPrevista(),
-                estat
+                estat,
+                l.getJoc().getGenere()
             });
         }
 
