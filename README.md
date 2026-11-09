@@ -22,8 +22,8 @@ Permet gestionar usuaris, videojocs, plataformes i lloguers.
 ## Execució
 1. Descarregar o clonar el repositori.
 2. Obrir el projecte amb NetBeans.
-3. Comprovar que la dependència ValidationAPI està instal·lada.
-###4. Executar la classe principal del projecte.
+### 3. Comprovar que la dependència ValidationAPI està instal·lada.
+4. Executar la classe principal del projecte.
 
 ## Dades inicials
 L'aplicació incorpora usuaris, videojocs i lloguers inicials per poder provar el funcionament.
