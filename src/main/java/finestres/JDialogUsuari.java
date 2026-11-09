@@ -271,7 +271,7 @@ public class JDialogUsuari extends javax.swing.JDialog {
 
             javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Cal omplir tots els camps obligatoris.",
+                    "S'han de omplir tots els camps obligatoris.",
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );

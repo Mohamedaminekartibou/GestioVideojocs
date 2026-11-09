@@ -90,9 +90,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuLloguer.setText("Lloguer");
 
         itemRegistrarLloguer.setText("Registrar");
+        itemRegistrarLloguer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRegistrarLloguerActionPerformed(evt);
+            }
+        });
         menuLloguer.add(itemRegistrarLloguer);
 
         itemTornarLloguer.setText("Tornar");
+        itemTornarLloguer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTornarLloguerActionPerformed(evt);
+            }
+        });
         menuLloguer.add(itemTornarLloguer);
 
         jMenuBar1.add(menuLloguer);
@@ -100,6 +110,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuUsuari.setText("Usuari");
 
         itemCrearUsuari.setText("Crear");
+        itemCrearUsuari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCrearUsuariActionPerformed(evt);
+            }
+        });
         menuUsuari.add(itemCrearUsuari);
 
         itemEsborrarUsuari.setText("Esborrar");
@@ -110,6 +125,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuJoc.setText("Joc");
 
         itemCrearJoc.setText("Crear");
+        itemCrearJoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCrearJocActionPerformed(evt);
+            }
+        });
         menuJoc.add(itemCrearJoc);
 
         itemEsborrarJoc.setText("Esborrar");
@@ -144,6 +164,31 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jMenuBar1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jMenuBar1AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuBar1AncestorAdded
+
+    private void itemCrearUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearUsuariActionPerformed
+        finestres.JDialogUsuari finestra = new finestres.JDialogUsuari(this, true);
+        finestra.setVisible(true);  
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemCrearUsuariActionPerformed
+
+    private void itemCrearJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearJocActionPerformed
+        finestres.JDialogJoc finestra = new finestres.JDialogJoc(this, true);
+        finestra.setVisible(true);     
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemCrearJocActionPerformed
+
+    private void itemRegistrarLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarLloguerActionPerformed
+       finestres.JDialogLloguer finestra = new finestres.JDialogLloguer(this, true);
+       finestra.setVisible(true); 
+// TODO add your handling code here:
+    }//GEN-LAST:event_itemRegistrarLloguerActionPerformed
+
+    private void itemTornarLloguerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTornarLloguerActionPerformed
+        finestres.JDialogTornar finestra = new finestres.JDialogTornar(this, true);
+
+        finestra.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_itemTornarLloguerActionPerformed
 
     /**
      * @param args the command line arguments
