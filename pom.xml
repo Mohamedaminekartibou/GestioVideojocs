@@ -10,4 +10,12 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>GestioVideojocs</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>cat.paucasesnovescifp.ifc32a</groupId>
+            <artifactId>ValidationAPI</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
