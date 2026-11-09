@@ -15,10 +15,21 @@ public class JDialogUsuari extends javax.swing.JDialog {
     /**
      * Creates new form JDialogUsuari
      */
-    public JDialogUsuari(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+   public JDialogUsuari(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    initComponents();
+
+    setLocationRelativeTo(parent);
+    setTitle("Crear usuari");
+
+    java.time.LocalDate dataActual = java.time.LocalDate.now();
+
+    java.time.format.DateTimeFormatter format =
+            java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    txtDataRegistre.setText(dataActual.format(format));
+    txtDataRegistre.setEditable(false);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +78,8 @@ public class JDialogUsuari extends javax.swing.JDialog {
             }
         });
 
+        txtDataRegistre.setEditable(false);
+
         txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDniActionPerformed(evt);
@@ -76,6 +89,11 @@ public class JDialogUsuari extends javax.swing.JDialog {
         btnConfirmar.setText("Confirmar");
 
         btnCancelar.setText("Cancel·lar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +178,11 @@ public class JDialogUsuari extends javax.swing.JDialog {
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDniActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+    dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
