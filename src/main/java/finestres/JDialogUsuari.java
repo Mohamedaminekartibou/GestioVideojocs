@@ -260,25 +260,41 @@ public class JDialogUsuari extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-private boolean campsCorrectes() {
+    private boolean campsCorrectes() {
 
-    if (txtNom.getText().trim().isEmpty()
-            || txtLlinatge1.getText().trim().isEmpty()
-            || txtLlinatge2.getText().trim().isEmpty()
-            || txtDni.getText().trim().isEmpty()
-            || txtTelefon.getText().trim().isEmpty()) {
+        // Comprobar campos vacíos
+        if (txtNom.getText().trim().isEmpty()
+                || txtLlinatge1.getText().trim().isEmpty()
+                || txtLlinatge2.getText().trim().isEmpty()
+                || txtDni.getText().trim().isEmpty()
+                || txtTelefon.getText().trim().isEmpty()) {
 
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "S'han de omplir tots els camps obligatoris.",
-                "Error",
-                javax.swing.JOptionPane.ERROR_MESSAGE
-        );
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cal omplir tots els camps obligatoris.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
 
-        return false;
+            return false;
+        }
+
+        // Comprobar que los nombres empiezan por mayuscula
+        if (!validacio.ValidacioNoms.comencaAmbMajuscula(txtNom.getText().trim())
+                || !validacio.ValidacioNoms.comencaAmbMajuscula(txtLlinatge1.getText().trim())
+                || !validacio.ValidacioNoms.comencaAmbMajuscula(txtLlinatge2.getText().trim())) {
+
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "El nom i els llinatges han de començar amb majúscula.",
+                    "Error de validació",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+
+            return false;
+        }
+
+        return true;
     }
-
-    return true;
-}
 
 }
