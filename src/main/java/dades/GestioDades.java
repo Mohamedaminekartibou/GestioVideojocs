@@ -8,10 +8,13 @@ package dades;
  *
  * @author Usuario
  */
+
 import java.util.ArrayList;
 
 public class GestioDades {
 
     public static ArrayList<Usuari> usuaris = new ArrayList<>();
+
+    public static ArrayList<Joc> jocs = new ArrayList<>();
 
 }
