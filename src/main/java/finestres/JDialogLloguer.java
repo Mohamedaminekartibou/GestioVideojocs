@@ -10,6 +10,8 @@ package finestres;
  */
 public class JDialogLloguer extends javax.swing.JDialog {
     
+    private dades.Usuari usuariSeleccionat;
+    private dades.Joc jocSeleccionat;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialogLloguer.class.getName());
 
     /**
@@ -18,6 +20,22 @@ public class JDialogLloguer extends javax.swing.JDialog {
     public JDialogLloguer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        setLocationRelativeTo(parent);
+
+        txtNumRegistre.setText(
+                String.valueOf(dades.GestioDades.seguentRegistre)
+        );
+
+        java.time.LocalDate avui = java.time.LocalDate.now();
+
+        java.time.format.DateTimeFormatter format
+                = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        txtDataInici.setText(avui.format(format));
+        txtDataTornada.setText(avui.plusDays(7).format(format));
+
+        actualitzarPlataformes();
     }
 
     /**
@@ -135,8 +153,18 @@ public class JDialogLloguer extends javax.swing.JDialog {
         txtJoc.setEditable(false);
 
         btnSeleccionarJoc.setText("Seleccionar...");
+        btnSeleccionarJoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarJocActionPerformed(evt);
+            }
+        });
 
         btnSeleccionarUsuari.setText("Seleccionar...");
+        btnSeleccionarUsuari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarUsuariActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Data de tornada:");
 
@@ -299,6 +327,11 @@ public class JDialogLloguer extends javax.swing.JDialog {
         );
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancel·lar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -446,6 +479,167 @@ public class JDialogLloguer extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSeleccionarUsuariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarUsuariActionPerformed
+        if (dades.GestioDades.usuaris.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hi ha usuaris registrats.",
+                    "Avís",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        String[] opcions = new String[dades.GestioDades.usuaris.size()];
+
+        for (int i = 0; i < opcions.length; i++) {
+            opcions[i] = dades.GestioDades.usuaris.get(i).getNomComplet();
+        }
+
+        int seleccio = javax.swing.JOptionPane.showOptionDialog(
+                this,
+                "Selecciona un usuari:",
+                "Usuaris",
+                javax.swing.JOptionPane.DEFAULT_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcions,
+                opcions[0]
+        );
+
+        if (seleccio >= 0) {
+            usuariSeleccionat = dades.GestioDades.usuaris.get(seleccio);
+            txtUsuari.setText(usuariSeleccionat.getNomComplet());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarUsuariActionPerformed
+
+    private void btnSeleccionarJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarJocActionPerformed
+        if (dades.GestioDades.jocs.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "No hi ha jocs registrats.",
+                    "Avís",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        String[] opcions = new String[dades.GestioDades.jocs.size()];
+
+        for (int i = 0; i < opcions.length; i++) {
+            opcions[i] = dades.GestioDades.jocs.get(i).getNom();
+        }
+
+        int seleccio = javax.swing.JOptionPane.showOptionDialog(
+                this,
+                "Selecciona un joc:",
+                "Jocs",
+                javax.swing.JOptionPane.DEFAULT_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE,
+                null,
+                opcions,
+                opcions[0]
+        );
+
+        if (seleccio >= 0) {
+            jocSeleccionat = dades.GestioDades.jocs.get(seleccio);
+            txtJoc.setText(jocSeleccionat.getNom());
+            actualitzarPlataformes();
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarJocActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if (usuariSeleccionat == null || jocSeleccionat == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cal seleccionar un usuari i un joc.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        dades.Plataforma plataformaSeleccionada = null;
+
+        if (rbtPS5.isSelected()) {
+            plataformaSeleccionada = dades.Plataforma.PS5;
+        } else if (rbtXbox.isSelected()) {
+            plataformaSeleccionada = dades.Plataforma.XBOX;
+        } else if (rbtSwitch2.isSelected()) {
+            plataformaSeleccionada = dades.Plataforma.SWITCH_2;
+        } else if (rbtPC.isSelected()) {
+            plataformaSeleccionada = dades.Plataforma.PC;
+        }
+
+        if (plataformaSeleccionada == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cal seleccionar una plataforma.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+// Comprovar i descomptar l'estoc
+        switch (plataformaSeleccionada) {
+
+            case PS5:
+                if (jocSeleccionat.getUnitatsPS5() <= 0) {
+                    return;
+                }
+                jocSeleccionat.setUnitatsPS5(
+                        jocSeleccionat.getUnitatsPS5() - 1);
+                break;
+
+            case XBOX:
+                if (jocSeleccionat.getUnitatsXbox() <= 0) {
+                    return;
+                }
+                jocSeleccionat.setUnitatsXbox(
+                        jocSeleccionat.getUnitatsXbox() - 1);
+                break;
+
+            case SWITCH_2:
+                if (jocSeleccionat.getUnitatsSwitch2() <= 0) {
+                    return;
+                }
+                jocSeleccionat.setUnitatsSwitch2(
+                        jocSeleccionat.getUnitatsSwitch2() - 1);
+                break;
+
+            case PC:
+                if (jocSeleccionat.getUnitatsPC() <= 0) {
+                    return;
+                }
+                jocSeleccionat.setUnitatsPC(
+                        jocSeleccionat.getUnitatsPC() - 1);
+                break;
+        }
+
+        dades.Lloguer lloguer = new dades.Lloguer(
+                dades.GestioDades.seguentRegistre,
+                usuariSeleccionat,
+                jocSeleccionat,
+                plataformaSeleccionada,
+                txtDataInici.getText(),
+                txtDataTornada.getText()
+        );
+
+        dades.GestioDades.lloguers.add(lloguer);
+        dades.GestioDades.seguentRegistre++;
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Lloguer registrat correctament.",
+                "Confirmació",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -535,4 +729,38 @@ public class JDialogLloguer extends javax.swing.JDialog {
     private javax.swing.JTextField txtNumRegistre;
     private javax.swing.JTextField txtUsuari;
     // End of variables declaration//GEN-END:variables
+
+private void actualitzarPlataformes() {
+
+    if (jocSeleccionat == null) {
+        rbtPS5.setEnabled(false);
+        rbtXbox.setEnabled(false);
+        rbtSwitch2.setEnabled(false);
+        rbtPC.setEnabled(false);
+        return;
+    }
+
+    int ps5 = jocSeleccionat.getUnitatsPS5();
+    int xbox = jocSeleccionat.getUnitatsXbox();
+    int switch2 = jocSeleccionat.getUnitatsSwitch2();
+    int pc = jocSeleccionat.getUnitatsPC();
+
+    lblDisponibilitatPS5.setText("(" + ps5 + " unitats disponibles)");
+    lblDisponibilitatXbox.setText("(" + xbox + " unitats disponibles)");
+    lblDisponibilitatSwitch2.setText("(" + switch2 + " unitats disponibles)");
+    lblDisponibilitatPC.setText("(" + pc + " unitats disponibles)");
+
+    lblUnitatsPS5.setText(String.valueOf(ps5));
+    lblUnitatsXbox.setText(String.valueOf(xbox));
+    lblUnitatsSwitch2.setText(String.valueOf(switch2));
+    lblUnitatsPC.setText(String.valueOf(pc));
+
+    rbtPS5.setEnabled(ps5 > 0);
+    rbtXbox.setEnabled(xbox > 0);
+    rbtSwitch2.setEnabled(switch2 > 0);
+    rbtPC.setEnabled(pc > 0);
+
+    buttonGroup1.clearSelection();
+}
+
 }

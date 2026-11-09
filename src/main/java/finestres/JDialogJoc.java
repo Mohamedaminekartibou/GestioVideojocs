@@ -229,7 +229,61 @@ public class JDialogJoc extends javax.swing.JDialog {
     }//GEN-LAST:event_chkPCActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        String nom = txtNom.getText().trim();
+
+        if (nom.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cal introduir el nom del joc.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        int ps5 = chkPS5.isSelected()
+                ? (int) spnPS5.getValue() : 0;
+
+        int switch2 = chkSwitch2.isSelected()
+                ? (int) spnSwitch2.getValue() : 0;
+
+        int xbox = chkXbox.isSelected()
+                ? (int) spnXbox.getValue() : 0;
+
+        int pc = chkPC.isSelected()
+                ? (int) spnPC.getValue() : 0;
+
+// Comprovar que hi hagi alguna plataforma amb unitats
+        if (ps5 + switch2 + xbox + pc == 0) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cal seleccionar almenys una plataforma amb unitats disponibles.",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+// Crear i guardar el joc
+        dades.Joc joc = new dades.Joc(
+                nom,
+                cmbGenere.getSelectedItem().toString(),
+                ps5,
+                switch2,
+                xbox,
+                pc
+        );
+
+        dades.GestioDades.jocs.add(joc);
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Joc creat correctament.",
+                "Confirmació",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+        dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
