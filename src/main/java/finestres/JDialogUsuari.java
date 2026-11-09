@@ -238,4 +238,27 @@ public class JDialogUsuari extends javax.swing.JDialog {
     private javax.swing.JTextField txtNom;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
+
+
+private boolean campsCorrectes() {
+
+    if (txtNom.getText().trim().isEmpty()
+            || txtLlinatge1.getText().trim().isEmpty()
+            || txtLlinatge2.getText().trim().isEmpty()
+            || txtDni.getText().trim().isEmpty()
+            || txtTelefon.getText().trim().isEmpty()) {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "S'han de omplir tots els camps obligatoris.",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+
+        return false;
+    }
+
+    return true;
+}
+
 }
