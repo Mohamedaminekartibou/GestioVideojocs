@@ -190,7 +190,18 @@ public class JDialogUsuari extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        if (!campsCorrectes()) {
+            return;
+        }
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Usuari creat correctament.",
+                "Confirmació",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+        dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
